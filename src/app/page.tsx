@@ -1,95 +1,100 @@
 import Image from 'next/image'
-import styles from './page.module.css'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
+    <main className="w-3/4 flex flex-col items-center gap-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute">
+      <div className="flex items-center gap-[50px]">
         <Image
-          className={styles.logo}
+          src="/fleekLogo.svg"
+          alt="Fleek Logo"
+          width={200}
+          height={87}
+          priority
+        />
+        <Image
+          src="/plus.svg"
+          alt="add"
+          width={20}
+          height={20}
+        />
+        <Image
           src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
+          className="dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+          alt="Next Logo"
+          width={200}
+          height={87}
           priority
         />
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      <p className="text-2xl">
+        This is a template for creating a Next.js site and deploying it on Fleek.
+      </p>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <ul
+        className='grid grid-cols-2 gap-[15px]'
+        role='list'
+      >
+        <Card
+          icon='/fleekMark.svg'
+          width={19}
+          href="https://docs.fleek.xyz/"
+          title="Fleek Documentation"
+          body="Learn about Fleek & the available services by cheking our official docs."
+        />
+        <Card
+          icon='/nextMark.svg'
+          width={31}
+          href="https://nextjs.org/docs"
+          title="Next.js Documentation"
+          body="Learn about how Next.js works and explore the official API docs."
+        />
+        <Card
+          icon='/fleekMark.svg'
+          width={19}
+          href="https://blog.fleek.xyz/"
+          title="Fleek Blog"
+          body="Checkout our Blog for more information about Fleek."
+        />
+        <Card
+          icon='/nextMark.svg'
+          width={31}
+          href="https://astro.build/integrations/"
+          title="Next.js Blog"
+          body="Check the latest news about Next.js."
+        />
+      </ul>
     </main>
+  )
+}
+
+type CardProps = {
+  title: string;
+  body: string;
+  href: string;
+  icon: string;
+  width: number;
+}
+
+const Card = ({ title, width, body, href, icon }: CardProps) => {
+  return (
+    <li className="list-none">
+      <a href={href} className="h-full flex flex-col no-underline rounded-3xl border-[0.85px] border-[#313538] gap-[15px] px-8 py-5">
+        <div className="flex gap-[15px] items-start ">
+          <Image
+            alt="card-icon"
+            src={icon}
+            height={31}
+            width={width}
+          />
+          <h2 className="text-xl font-bold leading-8 m-0 text-white">
+            {title}
+          </h2>
+        </div>
+        <p className="text-md leading-6 text-[#9ca3af]">
+          {body}
+        </p>
+      </a>
+    </li>
   )
 }
